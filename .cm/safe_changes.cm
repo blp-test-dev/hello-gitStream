@@ -17,6 +17,6 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            This PR is considered a safe change and has been automatically approved. Here are the changes contained in this PR: {{ source.diff.files | map(attr='new_content') }}
+            This PR is considered a safe change and has been automatically approved.
 is:
   docs: {{ files | allDocs }}
