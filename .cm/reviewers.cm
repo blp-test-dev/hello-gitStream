@@ -5,7 +5,7 @@ manifest:
 automations:
   security_review:
     if:
-      - {{ files | match(regex=r/src/auth\//) | some }}
+      - {{ files | match(regex=r/src\/app\/auth\//) | some }}
     run:
       - action: require-reviewers@v1
         args:
@@ -16,18 +16,18 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            This PR touches sensitive code in /src/auth and requires a review from the security team.
+            This PR touches sensitive code in /src/app/auth and requires a review from the security team.
       - action: add-label@v1
         args:
           label: "security"
-          color: #FBBD10
+          color: '#FBBD10'
       - action: set-required-approvals@v1
         args:
           approvals: 2
   new_endpoint_review:
     # Note: this isn't setup to evaluate if the PR is an addition only.
     if:
-      - {{ files | match(regex=r/src/services/openapi\//) | some }}
+      - {{ files | match(regex=r/src\/openapi\//) | some }}
     run:
       - action: require-reviewers@v1
         args:
@@ -42,4 +42,12 @@ automations:
       - action: add-label@v1
         args:
           label: "new-endpoint"
-          color: #0373fc
+          color: '#0373fc'
+  fake_it:
+    if:
+      - true
+    run:
+      - action: add-label@v1
+        args:
+          label: "10 min review"
+          color: '#FBBD10'
