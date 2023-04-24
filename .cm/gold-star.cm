@@ -8,7 +8,7 @@ automations:
     if:
       - {{ files | match(regex=r/(test|spec)/) | some }}
       - {{ files | length <= 5 }}
-      - {{ branch.name | match(regex=r/(?i)[A-Za-z]{2,}-\d+.*/) }} 
+      - {{ branch.name | match(regex=r/[A-Za-z]{2,}-\d+.*/) }} 
     run:
       - action: add-label@v1
         args:
