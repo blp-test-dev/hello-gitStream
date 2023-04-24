@@ -1,4 +1,4 @@
 # newAPI
 # anotherNewAPI
 
-# insecureAPI
+# insecureAuth
