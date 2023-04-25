@@ -14,3 +14,9 @@ automations:
         args:
           label: 'Best Practices ⭐'
           color: '#F4EBD0'
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR follows our company's recommended best practices by being a small update that includes a test and Jira ticket.
+            Great work!
+
