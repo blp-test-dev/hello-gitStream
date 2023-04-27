@@ -26,4 +26,4 @@ changes:
 
 is:
   one_file: {{ files | length == 1 }}
-  one_line: {{ changes.additions - changes.deletions <= 1 }}
+  one_line: {{ (changes.additions - changes.deletions <= 1) and (changes.additions - changes.deletions >= 0) }}
