@@ -11,8 +11,10 @@ automations:
     - action: add-comment@v1
       args:
         comment: |
-          files ({{ files | length }}):
-          {{ files | dump | safe }} 
+          Modified files ({{ files | length }}):
+          {% for file in files %}
+          * {{ file | dump | safe }}
+          {% endfor %}: 
 
 setting:
   # Set to true to enable some debug output to see variable values
