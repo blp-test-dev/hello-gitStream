@@ -6,7 +6,7 @@ manifest:
 automations:
   approve_python_formatting:
     if:
-      - {{ files | extensions | match('.py') | every }}
+      - {{ files | extensions | match('py') | every }}
       - {{ source.diff.files | isFormattingChange }}
     run:
       - action: approve@v1
