@@ -1,0 +1,37 @@
+title: "Automation Idea: "
+labels: ["New Automation Idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to contribute your gitStream automation idea! This template will walk you through all the information we need to evaluate your request and prioritize it for the library. Please fill out each section according to the instructions found in the comments.
+  - type: textarea
+    id: overview
+    attributes:
+      label: Overview
+      description: "Please describe the challenge this automation would help solve. Is it related to a problem you're facing?"
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Have you tried any alternative solutions?
+      description: "Please provide info about any alternatives you've tried and why they don't solve your problem."
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: "Provide screenshots, links to examples, and any other context that could help us understand why this automation is important."
+  - type: input
+    id: more-context
+    attributes:
+      label: Suggestions
+      description: A description about suggestions to help you
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your submission!
