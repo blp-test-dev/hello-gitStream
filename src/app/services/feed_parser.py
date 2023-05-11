@@ -2,6 +2,7 @@ import feedparser
 import json
 import os
 
+
 def get_latest_stories(feed_url, num_stories=10):
     feed = feedparser.parse(feed_url)
     latest_stories = []
