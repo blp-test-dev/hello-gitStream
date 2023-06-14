@@ -13,7 +13,7 @@ automations:
         args:
           url: {{ item.workflow }}
           method: "POST"
-          headers: '{ "Authorization": "Bearer ${{ secrets.DISPATCH_ACTIONS }}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }'
+          headers: '{ "Authorization": "Bearer {{ env.DISPATCH_ACTIONS }}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }'
           body: '{ "ref":"{{ branch.name }}", "inputs": {"name":"{{ pr.author }}" }}'
   {% endfor %}
 
