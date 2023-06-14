@@ -7,7 +7,7 @@ automations:
   {% for item in githubActions %}
   dispatch_{{ item.name }}_action:
     if:
-      - {{files | match('src/android/App.java') | some }}
+      - {{files | match(regex=r/src\/android\//) | some }}
     run:
       - action: http-request@v1
         args:
