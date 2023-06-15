@@ -6,7 +6,7 @@ manifest:
 automations:
   approve_javascript_formatting:
     if:
-      - {{ files | extensions | match('css') | some }}
+      - {{ files | extensions | match(css) | some }}
       - {{ source.diff.files | matchDiffLines(regex=r/!important/) | some }}
     run:
       - action: add-label@v1
