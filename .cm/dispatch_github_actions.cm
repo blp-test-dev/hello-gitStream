@@ -4,8 +4,7 @@ manifest:
   version: 1.0
   
 automations:
-  {% for item in githubActions %}
-  dispatch_{{ item.name }}_action:
+  dispatch_mobile_build_action:
     if:
       - {{files | match(regex=r/src\/android\//) | some }}
     run:
@@ -15,11 +14,10 @@ automations:
           method: "POST"
           headers: '{ "Authorization": "Bearer {{ env.DISPATCH_ACTIONS }}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }'
           body: '{ "ref":"{{ branch.name }}" }'
-  {% endfor %}
 
 
 githubActions:
-  - name: mobile-build
+  - name: mobile_build
     directories: src/android/
     workflow: 'https://api.github.com/repos/blp-test-dev/hello-gitstream/actions/workflows/mobile.yml/dispatches' 
   
