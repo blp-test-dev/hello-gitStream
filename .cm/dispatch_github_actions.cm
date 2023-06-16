@@ -12,8 +12,8 @@ automations:
         args:
           url: 'https://api.github.com/repos/blp-test-dev/hello-gitstream/actions/workflows/mobile.yml/dispatches' 
           method: "POST"
-          headers: { "Authorization": "Bearer {{ env.DISPATCH_ACTIONS }}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }
-          body: { "ref":"{{ branch.name }}" }
+          headers: '{ "Authorization": "Bearer {{ env.DISPATCH_ACTIONS }}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }'
+          body: '{ "ref":"{{ branch.name }}" }'
 
 
 githubActions:
