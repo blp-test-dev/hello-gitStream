@@ -17,7 +17,7 @@ automations:
           body: '{ "ref":"{{ branch.name }}", "inputs": {"name":"{{ pr.author }}" }}'
       - action: add-label@v1
         args:
-          label: item.label
+          label: {{ item.label }}
   {% endfor %}
 
 
