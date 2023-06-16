@@ -4,20 +4,38 @@ manifest:
   version: 1.0
   
 automations:
-  dispatch_mobile_build_action:
+  {% for item in pipelines %}
+  dispatch_{{ item.name }}_action:
     if:
-      - {{files | match(regex=r/src\/android\//) | some }}
+      - {{ files | match(list=item.resources) | some }}
     run:
       - action: http-request@v1
         args:
-          url: 'https://api.github.com/repos/blp-test-dev/hello-gitstream/actions/workflows/mobile.yml/dispatches' 
+          url: 'https://api.github.com/repos/blp-test-dev/hello-gitsream/actions/workflows/{{ item.workflow }}/dispatches'
           method: "POST"
-          headers: '{ "Authorization": "Bearer {{ env.DISPATCH_ACTIONS }}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }'
-          body: '{ "ref":"{{ branch.name }}" }'
+          headers: '{ "Authorization": "Bearer ${{ secrets.GITHUB_TOKEN }}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }'
+          body: '{ "ref":"{{ branch.name }}", "inputs": {"name":"{{ pr.author }}" }}'
+      - action: add-label@v1
+        args:
+          label: item.label
+  {% endfor %}
 
 
-githubActions:
-  - name: mobile_build
-    directories: src/android/
-    workflow: 'https://api.github.com/repos/blp-test-dev/hello-gitstream/actions/workflows/mobile.yml/dispatches' 
-  
+pipelines:
+  - name: mobile-build
+    resources:
+      - 'src/android/'
+      - 'src/ios/'
+    workflow: mobile.yml
+    label: Mobile Build 
+  - name: backend-build
+    resources:
+      - src/api/
+      - src/app
+    workflow: 'backend.yml'
+    label: Backend Build 
+  - name: frontend-build
+    resources:
+      - src/app/ui
+    workflow: 'frontend.yml'
+    label: Frontend Build
