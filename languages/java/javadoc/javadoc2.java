@@ -1,7 +1,9 @@
 
 public class RandomClass {
 
-
+    /*
+    * Something
+    */
     public void sayHello() {
         System.out.println("Hello, world!");
     }
