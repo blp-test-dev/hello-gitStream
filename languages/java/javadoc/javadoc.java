@@ -86,6 +86,11 @@ public class RandomClass {
         int randomNumber = randomObj.generateRandomNumber(1, 10);
         System.out.println("Random number between 1 and 10: " + randomNumber);
     }
+    /**
+     * This is the main method that serves as an entry point for the program.
+     *
+     * @param args The command-line arguments.
+     */
         public static void main(String[] args) {
         RandomClass randomObj = new RandomClass();
         randomObj.sayHello();
