@@ -13,7 +13,7 @@ public class RandomClass {
     /**
      * This method calculates the factorial of a given number.
      *
-     * @param n The number for which the factorial is calculated.
+     * @param myInt The number for which the factorial is calculated.
      * @return The factorial of the given number.
      */
     public int factorial(int myInt) {
