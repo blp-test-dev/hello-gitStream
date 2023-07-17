@@ -13,7 +13,7 @@ public class RandomClass {
     /**
      * This method calculates the factorial of a given number.
      *
-     * @param n The number for which the factorial is calculated.
+     * @param n The number for which the factorial is calculated
      * @return The factorial of the given number.
      */
     public int factorial(int n) {
@@ -27,7 +27,7 @@ public class RandomClass {
     /**
      * This method reverses a given string.
      *
-     * @param str The string to be reversed.
+     * @param str The string to be reversed
      * @return The reversed string.
      */
     public String reverseString(String str) {
