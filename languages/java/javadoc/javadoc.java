@@ -5,6 +5,7 @@ public class RandomClass {
 
     /**
      * This is a random method that prints "Hello, world!".
+     * Some more docs
      */
     public void sayHello() {
         System.out.println("Hello, world!");
@@ -13,7 +14,7 @@ public class RandomClass {
     /**
      * This method calculates the factorial of a given number.
      *
-     * @param n The number for which the factorial is calculated.
+     * @param n The number 
      * @return The factorial of the given number.
      */
     public int factorial(int n) {
@@ -28,7 +29,7 @@ public class RandomClass {
      * This method reverses a given string.
      *
      * @param str The string to be reversed.
-     * @return The reversed string.
+     * @return The reversed string
      */
     public String reverseString(String str) {
         StringBuilder reversed = new StringBuilder();
@@ -42,7 +43,7 @@ public class RandomClass {
      * This method checks if a given number is prime.
      *
      * @param num The number to be checked.
-     * @return True if the number is prime, false otherwise.
+     * @return True if the number is prime false otherwise.
      */
     public boolean isPrime(int num) {
         if (num <= 1) {
@@ -60,7 +61,7 @@ public class RandomClass {
      * This method generates a random number between a given range.
      *
      * @param min The minimum value of the range (inclusive).
-     * @param max The maximum value of the range (inclusive).
+     * @param max The maximum value of the range (inclusive)
      * @return A random number within the given range.
      */
     public int generateRandomNumber(int min, int max) {
