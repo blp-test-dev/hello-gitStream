@@ -17,6 +17,8 @@ class Book {
         this.author = author;
     }
 
+
+    
     /**
      * Gets the book title
      * @return {string} The title of the book
