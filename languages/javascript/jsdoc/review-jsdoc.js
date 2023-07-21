@@ -1,15 +1,16 @@
 
 
 /**
- * Represents a Book with a title and an author
- */
+     * @param {string} title - The title of the book
+     * @param {string} author - The authorof the book
+*/
 class Book {
     title: string;
     author: string;
 
     /**
      * @param {string} title - The title of the book
-     * @param {string} author - The author of the book
+     * @param {string} author - The authorof the book
      */
     constructor(title: string, author: string) {
         this.title = title;
