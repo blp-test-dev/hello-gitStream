@@ -1,0 +1,7 @@
+import Swift
+
+func helloWorld() {
+    print("Hello, World!")
+}
+
+helloWorld()

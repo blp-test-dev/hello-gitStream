@@ -13,7 +13,7 @@ automations:
         comment: |
           {{ my_exp.title }}
           {{ my_exp.pr_description }}
-          {{ my_exp.byline | dump }}
+          {{ my_exp.byline }}
 
 setting:
   # Set to true to enable some debug output to see variable values
@@ -27,4 +27,5 @@ my_exp:
 
   byline: |
     Authored by `{{ pr.author }}` at `{{ pr.created_at }}`.
-    Last updated 
+    Last updated `{{ pr.created_at }}`
+    
