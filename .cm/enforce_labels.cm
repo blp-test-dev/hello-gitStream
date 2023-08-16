@@ -6,7 +6,7 @@ automations:
 
   enforce_required_labels:  
     if:
-      - {{ pr.labels not match(list=['Core', 'UI']) }}
+      - {{ pr.labels | not match(list=['Core', 'UI']) }}
 
     run:
       - action: add-label@v1
