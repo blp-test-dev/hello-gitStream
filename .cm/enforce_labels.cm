@@ -1,22 +1,11 @@
-# -*- mode: yaml -*-
 manifest:
   version: 1.0
 
 automations:
-
-  enforce_required_labels:  
+  enforce_labels:
     if:
-      - {{ pr.labels | not match(list=['Core', 'UI']) }}
-
+      - {{ pr.labels | match(list=['Core', 'Mobile', 'UI']) | nope }}
     run:
-      - action: add-label@v1
+      - action: request-changes@v1
         args:
-          label: "Missing Required Labels"
-          color: {{ colors.yellow }}
-      - action: add-comment@v1
-        args: 
-          comment: | 
-               All PRs to this repo must include one or more of the following labels: Mobile, Core, Docs, and Test. Please resolve this before requesting a review.
-
-colors:
-  yellow: 'fbca04'
+          comment: Please ensure that your PR is labeled with either 'Core', 'Mobile', or 'UI'. These labels help us to better track and manage your contribution. Thank you.
