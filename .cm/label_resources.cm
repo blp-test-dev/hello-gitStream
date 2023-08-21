@@ -1,0 +1,35 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+{% set percent = changes.ratio %}
+
+automations:
+  {% for item in labels %}
+  label_automations_{{ item.name }}:
+      if:
+         - {{ files | match(list=item.resources) }}
+         - percent > 0
+      run:
+        - action: add-label@v1
+          args:
+            label: '{{ item.additions }}% {{ item.name }}'
+   {% endfor %}
+
+
+resources:
+  core:
+    - src/app
+  mobile:
+    - src/android
+    - src/ios
+  docs:
+    - src/app
+
+labels:
+  - name: Core
+    resources: resources.core
+    additions: {{ branch.diff.files_metadata | filter(attr='file', list=resources.core ) | map(attr='additions') | sum / total.additions * 100 | round(2) }}
+
+total:
+  additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
