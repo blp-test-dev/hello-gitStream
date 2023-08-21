@@ -26,7 +26,8 @@ resources:
 
 labels:
   - name: Core
-    resources: resources.core
+    resources:
+    - src/app
     additions: {{ branch.diff.files_metadata | filter(attr='file', list=resources.core ) | map(attr='additions') | sum / total.additions * 100 | round(2) }}
   - name: Mobile
     resources: resources.mobile
