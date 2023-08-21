@@ -21,12 +21,18 @@ resources:
     - src/android
     - src/ios
   docs:
-    - src/app
+    - docs/
 
 labels:
   - name: Core
     resources: resources.core
     additions: {{ branch.diff.files_metadata | filter(attr='file', list=resources.core ) | map(attr='additions') | sum / total.additions * 100 | round(2) }}
+  - name: Mobile
+    resources: resources.mobile
+    additions: {{ branch.diff.files_metadata | filter(attr='file', list=resources.mobile ) | map(attr='additions') | sum / total.additions * 100 | round(2) }}
+  - name: Docs
+    resources: resources.docs
+    additions: {{ branch.diff.files_metadata | filter(attr='file', list=resources.docs ) | map(attr='additions') | sum / total.additions * 100 | round(2) }}
 
 total:
   additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
