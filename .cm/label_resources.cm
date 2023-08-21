@@ -6,13 +6,12 @@ automations:
   {% for item in labels %}
   label_automations_{{ item.name }}:
       if:
-         - {{ files | match(list=item.resources) | some }}
-         - true
+        - {{ files | match(list=item.resources) | some }}
       run:
         - action: add-label@v1
           args:
             label: '{{ item.additions }}% {{ item.name }}'
-   {% endfor %}
+  {% endfor %}
 
 
 resources:
