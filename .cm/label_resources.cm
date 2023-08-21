@@ -18,7 +18,9 @@ resources:
   core:
     - src/app
     - src/core
-  mobile: ['src/android', 'src/ios']
+  mobile: 
+    - 'src/android'
+    - 'src/ios'
   docs:
     - docs/
 
