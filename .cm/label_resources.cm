@@ -19,8 +19,8 @@ resources:
     - src/app
     - src/core
   mobile: 
-    - 'src/android'
-    - 'src/ios'
+    - src/android
+    - src/ios
   docs:
     - docs/
 
