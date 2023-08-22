@@ -21,6 +21,6 @@ automations:
 
 has:
   requiredBranchPrefix: {{ branch.name | includes(regex=r/^(feature|stable|fix)/) }}
-  requiredBranchKeyword: {{ branch.name | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  requiredBranchKeyword: {{ branch.name | includes(regex=r/abc+-\d+/) }}
 
 ignoreList: {{ branch.name | match(regex=r/^(development|staging)/) }}
