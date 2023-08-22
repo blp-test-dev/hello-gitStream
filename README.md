@@ -1,4 +1,4 @@
 # Hello gitStream
 This is a test repo. Please disregard.
 
-Apples, oranges and bananas.
+Apples, watermelon, oranges and bananas.
