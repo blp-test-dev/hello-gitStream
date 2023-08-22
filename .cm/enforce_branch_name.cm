@@ -23,7 +23,7 @@ branchConvention:
   requiredPrefixes: r/^(feature|stable|fix)/
 
   # This matches Jira ticket naming conventions, modify the regex to suit your project
-  branchRegex: '\b[A-Za-z]+-\d+\b'
+  branchRegex: 'r/\b[A-Za-z]+-\d+\b/'
 
   ignoreList: r/^(development|staging)/
 
