@@ -6,7 +6,7 @@ automations:
   {% for item in teams %}
   review_team_{{ item.name }}: 
     if:  
-      - {{ pr.author_teams | includes(term=item.regex) }}
+      - {{ pr.author_teams | includes(term=item.term) }}
     run:
       - action: set-required-approvals@v1
         args:
@@ -21,11 +21,11 @@ automations:
   {% endfor %}
 
 teams:
-  - regex: mentors
+  - term: mentors
     name: Security
     reviewers: 1
     team: blp-test-dev/security
-  - regex: mobile-team
+  - term: mobile-team
     name: Mobile
     reviewers: 4
     team: org/mobile-team
