@@ -44,7 +44,7 @@ automations:
 watchers:
   - owner: BenLloydPearson
     files:
-    - src/auth
+    - auth
   - team: release
     files:
     - package.json
