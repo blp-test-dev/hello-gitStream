@@ -23,11 +23,6 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            **New Files**
-            {{ newFiles }}
-            **New Tests**
-            {{ newTests }}
-            **Missing Tests**
+            **This PR is missing the following tests for newly created files:**
             {{ missList }}
-            **Parsed Names**
-            {{ testList }}
+
