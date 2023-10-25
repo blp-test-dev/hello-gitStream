@@ -1,8 +1,9 @@
 # -*- mode: yaml -*-
 manifest:
   version: 1.0
+
 newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
-newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') | capture(regex=r/(.*)(?=.test.js$)/ }}
+newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 
 {% set missList = [] %}
 {% for file in newFiles %}
