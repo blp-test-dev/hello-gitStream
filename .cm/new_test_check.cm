@@ -1,5 +1,5 @@
 # -*- mode: yaml -*-
-newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') | capture(regex=r/(src\/.*\/.*)\.js$/) }}
+newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') | capture(regex=r/(.*)(?=.js$)/) }}
 newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 
 manifest:
