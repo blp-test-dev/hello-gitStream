@@ -1,6 +1,10 @@
 # -*- mode: yaml -*-
 manifest:
   version: 1.0
+
+on:
+  - pr_created
+
 automations:
   email_test: 
     if:
