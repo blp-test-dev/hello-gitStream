@@ -4,6 +4,7 @@ manifest:
   version: 1.0
 
 automations:
+  # Automatically flag large PRs and suggest breaking up the PR.
   flag_large_change:
     if:
       - {{ branch.diff.size >= 150 }}
@@ -17,6 +18,7 @@ automations:
           comment: |
             This PR has a large number of lines changed. 
             Please consider breaking it up into smaller, more manageable changes.
+  # Automatically provide a link to Jira tickets based on branch name.
   link_jira:
     if:
       - {{ branch.name | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
@@ -24,6 +26,7 @@ automations:
       - action: add-comment@v1
         args:
           comment: Issue Tracker Link - [{{ticketid}}](https://example.atlassian.net/browse/{{ticketid}})
+  # Automatically request changes when someone uses a deprecated API.
   {% for item in deprecated %}
   review_deprecated_component_{{ item.old }}:
     if:
@@ -38,6 +41,7 @@ automations:
           comment: |
             `{{ item.old }}` component is deprecated, use `{{ item.new }}` instead
   {% endfor %}
+  # Estimate review time.
   estimated_time_to_review:
     if:
       - true
