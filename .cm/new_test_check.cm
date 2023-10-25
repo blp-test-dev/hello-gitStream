@@ -21,4 +21,9 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ parsedName }}
+            **New Files**
+            {{ newFiles }}
+            **New Tests**
+            {{ newTests }}
+            **Missing Tests**
+            {{ missList }}
