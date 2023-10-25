@@ -1,0 +1,16 @@
+# -*- mode: yaml -*-
+newFiles: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) }}
+# TODO: Make the previous line only work for new files of a specified programming language
+
+manifest:
+  version: 1.0
+
+automations:
+  new_files_check:
+    if:
+      - true
+    run: 
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ newFiles }}
