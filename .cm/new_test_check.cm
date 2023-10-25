@@ -2,13 +2,13 @@
 manifest:
   version: 1.0
 
-newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/^src\/(?!.*\.test\.js$).*\.js$/) | filter(attr='original_file', regex=r/^$/) }}
+newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/^src\/(?!.*\.test\.js$).*\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 
 {% set missList = [] %}
 {% set testList = [] %}
 {% for file in newFiles %}
-{% set parsedName = (file | map(attr='new_file') | capture(regex=r/(.*)(?=.js$)/)) %}
+{% set parsedName = (file | capture(regex=r/(.*)(?=.js$)/)) %}
 {% set testList = testList + parsedName %}
 {% if (newTests | match(term=parsedName) | nope ) %}
 {% set missList = missList + [file] %}
@@ -23,6 +23,8 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
+            **New Files**
+            {{ newFiles }}
             **New Tests**
             {{ newTests }}
             **Missing Tests**
