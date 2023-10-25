@@ -21,7 +21,5 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-          {{comment_text}}
-
-comment_text: {{missList}}
+          {{missList}}
 
