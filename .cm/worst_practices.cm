@@ -38,6 +38,14 @@ automations:
           comment: |
             `{{ item.old }}` component is deprecated, use `{{ item.new }}` instead
   {% endfor %}
+    estimated_time_to_review:
+    if:
+      - true
+    run:
+      - action: add-label@v1
+        args:
+          label: "{{ calc.etr }} min review"
+          color: {{ colors.red if (calc.etr >= 20) else ( colors.yellow if (calc.etr >= 5) else colors.green ) }}
 
 # These are the deprecated files that are evaluated in review_deprecated_components
 deprecated:
@@ -51,4 +59,6 @@ deprecated:
 ticketid: {{ branch.name | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
 
 colors:
+  red: 'b60205'
   yellow: 'fbca04'
+  green: '0e8a16'
