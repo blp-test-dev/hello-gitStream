@@ -10,7 +10,7 @@ newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.
 {% set missList = [] %}
 {% set testList = [] %}
 {% for file in newFiles %}
-{% set parsedName = (file | string ) %}
+{% set parsedName = (file) %}
 {% set testList = testList + [parsedName] %}
 {% if (newTests | match(term=parsedName) | nope ) %}
 {% set missList = missList + [file] %}
@@ -33,3 +33,7 @@ automations:
             {{ missList }}
             **Parsed Names**
             {{ testList }}
+
+
+
+ capture(regex=r/(.*)(?=.js$)/)
