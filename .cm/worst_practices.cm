@@ -11,6 +11,7 @@ automations:
       - action: add-label@v1
         args:
           label: '⚠️ Complex Change'
+          color: {{ colors.yellow }}
       - action: add-comment@v1
         args:
           comment: |
@@ -48,3 +49,6 @@ deprecated:
     new: anotherNewAPI
 
 ticketid: {{ branch.name | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+
+colors:
+  yellow: 'fbca04'
