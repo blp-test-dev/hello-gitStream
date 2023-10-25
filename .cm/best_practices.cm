@@ -7,7 +7,7 @@ automations:
   best_practices:
     if:
       - {{ branch.diff.size | length < 150 }}
-      - {{ pr.description | includes(regex='https://jira\\.com/[A-Z]+-[0-9]+') }}
+      - {{ (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
       - {{ branch | estimatedReviewTime < 10 }}
     run:
       - action: add-label@v1
@@ -34,3 +34,7 @@ colors:
   red: 'b60205'
   yellow: 'fbca04'
   green: '0e8a16'
+
+has:
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
