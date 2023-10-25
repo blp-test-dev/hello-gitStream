@@ -27,3 +27,5 @@ automations:
             {{ newTests }}
             **Missing Tests**
             {{ missList }}
+            **Parsed Name**
+            {{ parsedName }}
