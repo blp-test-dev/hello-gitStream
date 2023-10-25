@@ -1,0 +1,50 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+  
+provider: jira
+
+# Change this to the name of your Jira organization
+orgName: example
+
+{% set ticketid = "" %}
+{% for ticket in tickets %}
+{% if (ticket | includes(regex=r/.+/)) %}
+{% set ticketid = ticket %}
+{% endif %}
+{% endfor %} 
+
+automations:
+  flag_large_change:
+    if:
+      - {{ branch.diff.size >= 150 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: '⚠️ Complex Change'
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR has a large number of lines changed. 
+            Please consider breaking it up into smaller, more manageable changes.
+  link_jira:
+    if:
+      - {{ has.ticket_in_title or has.ticket_in_branch }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: Issue Tracker Link - [{{ticketid}}]({{tracker[provider].baseurl}}{{ticketid}})
+
+has:
+  ticket_in_title: {{ pr.title | includes(regex=tracker[provider].pattern) }}
+  ticket_in_branch: {{ branch.name | includes(regex=tracker[provider].pattern) }}
+
+tracker:
+  jira:
+    baseurl: https://[orgName].atlassian.net/browse/
+    pattern: r/\b[A-Za-z]+-\d+\b/
+
+tickets:
+  - {{branch.name | capture(regex=tracker[provider].pattern)}}
+  - {{pr.title | capture(regex=tracker[provider].pattern)}}
