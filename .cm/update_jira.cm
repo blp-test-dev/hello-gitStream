@@ -10,6 +10,5 @@ automations:
         args:
           url: "https://gitstream-test.atlassian.net/rest/api/2/issue/"
           method: POST
-          headers: '{"Content-type": "application/json"}'
-          user: {{ env.JIRA_API_AUTH }}
+          user: {{env.JIRA_API_AUTH}}
           body: '{"fields": {"project":{"key": "AP"},"summary": "Test Summary","description": "Test Description","issuetype": {"name": "Task"}}}'
