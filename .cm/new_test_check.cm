@@ -15,6 +15,7 @@ newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.
 {% endif %}
 {% endfor %} 
 
+
 automations:
   new_files_check:
     if:
