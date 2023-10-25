@@ -35,6 +35,7 @@ jobs:
     name: gitStream workflow automation
     env: 
       ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+      JIRA_API_AUTH: ${{ secrets.JIRA_API_AUTH }}
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
