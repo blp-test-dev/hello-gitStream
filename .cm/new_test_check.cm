@@ -5,10 +5,12 @@ manifest:
 newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/^src\/(?!.*\.test\.js$).*\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 
+{% for file in () %}
+
 {% set missList = [] %}
 {% set testList = [] %}
-{% for athing in newFiles %}
-{% set parsedName = (athing | string | capture(regex=r/(.*)(?=.js$)/)) %}
+{% for file in newFiles %}
+{% set parsedName = (file | string ) %}
 {% set testList = testList + [parsedName] %}
 {% if (newTests | match(term=parsedName) | nope ) %}
 {% set missList = missList + [file] %}
@@ -31,4 +33,3 @@ automations:
             {{ missList }}
             **Parsed Names**
             {{ testList }}
-
