@@ -11,7 +11,7 @@ newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.
 {% set testList = testList + [file+' '] %}
 {% set parsedName = (file | capture(regex=r/(.*)(?=.js$)/)) %}
 {% if (newTests | match(term=parsedName) | nope ) %}
-{% set missList = missList + [file] %}
+{% set missList = missList + [parsedName] %}
 {% endif %}
 {% endfor %} 
 
