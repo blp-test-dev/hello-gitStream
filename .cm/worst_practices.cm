@@ -23,5 +23,28 @@ automations:
       - action: add-comment@v1
         args:
           comment: Issue Tracker Link - [{{ticketid}}](https://example.atlassian.net/browse/{{ticketid}})
+  {% for item in deprecated %}
+  review_deprecated_component_{{ item.old }}:
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=item.regex) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'deprecated-component'
+          color: '#FF0000'
+      - action: request-changes@v1
+        args:
+          comment: |
+            `{{ item.old }}` component is deprecated, use `{{ item.new }}` instead
+  {% endfor %}
+
+# These are the deprecated files that are evaluated in review_deprecated_components
+deprecated:
+  - regex: r/oldAPI/
+    old: oldAPI
+    new: newAPI
+  - regex: r/anotherOldAPI/
+    old: anotherOldAPI
+    new: anotherNewAPI
 
 ticketid: {{ branch.name | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
