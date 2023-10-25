@@ -3,11 +3,16 @@
 manifest:
   version: 1.0
 
+provider: jira
+
+# Change this to the name of your Jira organization
+orgName: gitstream-test
+
 automations:
   best_practices:
     if:
       - {{ branch.diff.size | length < 150 }}
-      - {{ pr.description | includes(regex='https://jira\\.com/[A-Z]+-[0-9]+') }}
+      - {{ has.ticket_in_title or has.ticket_in_branch }}
       - {{ branch | estimatedReviewTime < 10 }}
     run:
       - action: add-label@v1
@@ -34,3 +39,16 @@ colors:
   red: 'b60205'
   yellow: 'fbca04'
   green: '0e8a16'
+
+has:
+  ticket_in_title: {{ pr.title | includes(regex=tracker[provider].pattern) }}
+  ticket_in_branch: {{ branch.name | includes(regex=tracker[provider].pattern) }}
+
+tracker:
+  jira:
+    baseurl: https://[orgName].atlassian.net/browse/
+    pattern: r/\b[A-Za-z]+-\d+\b/
+
+tickets:
+  - {{branch.name | capture(regex=tracker[provider].pattern)}}
+  - {{pr.title | capture(regex=tracker[provider].pattern)}}
