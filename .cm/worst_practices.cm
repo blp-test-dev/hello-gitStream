@@ -8,12 +8,7 @@ provider: jira
 # Change this to the name of your Jira organization
 orgName: example
 
-{% set ticketid = "" %}
-{% for ticket in tickets %}
-{% if (ticket | includes(regex=r/.+/)) %}
-{% set ticketid = ticket %}
-{% endif %}
-{% endfor %} 
+{% set ticketid = {{ branch.name | capture(regex=tracker[provider].pattern) }} %}
 
 automations:
   flag_large_change:
