@@ -1,19 +1,16 @@
 # -*- mode: yaml -*-
+manifest:
+  version: 1.0
 newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') | capture(regex=r/(.*)(?=.test.js$)/ }}
 
 {% set missList = [] %}
 {% for file in newFiles %}
-{% set parsedName = (file | capture(regex=r/(.*)(?=.js$)/) )}
-{% if (newTests | match(term=parsedName)) | nope }
+{% set parsedName = (file | capture(regex=r/(.*)(?=.js$)/)) %}
+{% if (newTests | match(term=parsedName)) | nope %}
 {% set misslist = misslist + [file+' '] %}
 {% endif %}
 {% endfor %} 
-
-missingTests: newFiles
-
-manifest:
-  version: 1.0
 
 automations:
   new_files_check:
