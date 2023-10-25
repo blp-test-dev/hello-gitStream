@@ -1,0 +1,36 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  best_practices:
+    if:
+      - {{ branch.diff.size | length < 150 }}
+      - {{ pr.description | includes(regex='https://jira\\.com/[A-Z]+-[0-9]+') }}
+      - {{ branch | estimatedReviewTime < 10 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🌟 Best Practices 🌟"
+          color: {{ colors.green }}
+      - action: add-comment@v1
+        args:
+          comment: "Thank you for following the team's recommended development practices!"
+  estimated_time_to_review:
+    if:
+      - true
+    run:
+      - action: add-label@v1
+        args:
+          label: "{{ calc.etr }} min review"
+          color: {{ colors.red if (calc.etr >= 20) else ( colors.yellow if (calc.etr >= 5) else colors.green ) }}
+
+calc:
+  etr: {{ branch | estimatedReviewTime }}
+
+
+colors:
+  red: 'b60205'
+  yellow: 'fbca04'
+  green: '0e8a16'
