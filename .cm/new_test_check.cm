@@ -34,6 +34,3 @@ automations:
             **Parsed Names**
             {{ testList }}
 
-
-
- capture(regex=r/(.*)(?=.js$)/)
