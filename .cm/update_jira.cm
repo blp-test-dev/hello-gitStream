@@ -12,16 +12,4 @@ automations:
           method: POST
           headers: '{"Content-type": "application/json"}'
           user: {{ env.JIRA_API_AUTH }}
-          body: '{
-            "fields": {
-               "project":
-               {
-                  "key": "AP"
-               },
-               "summary": "Test Summary",
-               "description": "Test Description",
-               "issuetype": {
-                  "name": "Task"
-               }
-           }
-        }'
+          body: '{"fields": {"project":{"key": "AP"},"summary": "Test Summary","description": "Test Description","issuetype": {"name": "Task"}}}'
