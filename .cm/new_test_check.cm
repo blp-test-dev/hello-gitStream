@@ -8,10 +8,9 @@ newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.
 {% set missList = [] %}
 {% set testList = [] %}
 {% for file in newFiles %}
-{% set testList = testList + [file+' '] %}
 {% set parsedName = (file | capture(regex=r/(.*)(?=.js$)/)) %}
 {% if (newTests | match(term=parsedName) | nope ) %}
-{% set missList = missList + [parsedName] %}
+{% set missList = missList + [file] %}
 {% endif %}
 {% endfor %} 
 
@@ -23,6 +22,6 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            **This PR is missing the following tests for newly created files:**
+            **This PR is missing the following tests:**
             {{ missList }}
 
