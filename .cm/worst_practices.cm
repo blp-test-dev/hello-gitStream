@@ -8,7 +8,7 @@ provider: jira
 # Change this to the name of your Jira organization
 orgName: example
 
-{% set ticketid = {{ branch.name | capture(regex=tracker[provider].pattern) }} %}
+{% set ticketid = {{ branch.name | capture(regex=r/\b[A-Za-z]+-\d+\b/) }} %}
 
 automations:
   flag_large_change:
