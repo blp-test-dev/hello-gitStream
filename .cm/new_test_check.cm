@@ -20,11 +20,8 @@ automations:
     run: 
       - action: add-comment@v1
         args:
-          comment: {{comment_text}}
+          comment: |
+          {{comment_text}}
 
-comment_text: |
-  **The following tests are missing for new files in this PR:**
-  {% for item in missList %}
-  * {{ item }}
+comment_text: {{missList}}
 
-  {% endfor %}
