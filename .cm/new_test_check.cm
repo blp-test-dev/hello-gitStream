@@ -6,6 +6,7 @@ newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.js$/) 
 newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 
 {% set missList = [] %}
+{% set testList = [] %}
 {% for file in newFiles %}
 {% set parsedName = (file | capture(regex=r/(.*)(?=.js$)/)) %}
 {% if (newTests | match(term=parsedName) | nope ) %}
@@ -27,5 +28,5 @@ automations:
             {{ newTests }}
             **Missing Tests**
             {{ missList }}
-            **Parsed Name**
-            {{ parsedName }}
+            **Parsed Names**
+            {{ testList }}
