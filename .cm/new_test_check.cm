@@ -1,5 +1,5 @@
 # -*- mode: yaml -*-
-newFiles: {{ source.diff.files |  filter(attr='original_file', regex=r/^$/) }}
+newFiles: {{ source.diff.files |  filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 # TODO: Make the previous line only work for new files of a specified programming language
 
 manifest:
