@@ -11,7 +11,7 @@ newTestsCount: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.t
 automations:
   new_files_check:
     if:
-      - true
+      - {{ newFilesCount != newTestsCount }}
     run: 
       - action: add-comment@v1
         args:
