@@ -14,5 +14,5 @@ automations:
         args:
           comment: |
             {% for file in newFiles %}
-            * ( file | join(','))
+            * {{( file | join(','))}}
             {% endfor %}
