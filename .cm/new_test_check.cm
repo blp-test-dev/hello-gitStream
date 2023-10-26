@@ -5,6 +5,9 @@ manifest:
 newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/^src\/(?!.*\.test\.js$).*\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 
+newFilesCount: {{ newFiles | count }}
+newTestsCount: {{ newTests | count }}
+
 automations:
   new_files_check:
     if:
@@ -13,6 +16,11 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {% for file in newFiles %}
-            * {{( file | join(','))}}
-            {% endfor %}
+            There are {{ newFilesCount }} new files and {{ newTestsCount }} new tests.
+            Please ensure that all new files have a corresponding test file.
+
+            **New Files**
+            {{ newFiles }}
+            
+            **New Tests**
+            {{ newTests }}
