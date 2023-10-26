@@ -11,16 +11,15 @@ newTestsCount: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.t
 automations:
   new_files_check:
     if:
-      - true
+      - {{ newFilesCount != newTestsCount }}
     run: 
-      - action: add-comment@v1
+      - action: request-changes@v1
         args:
           comment: |
-            There are {{ newFilesCount }} new files and {{ newTestsCount }} new tests.
-            Please ensure that all new files have a corresponding test file.
+            Some of your new JavaScript files are missing corresponding tests. Please ensure that all new files have a corresponding test file.
 
-            **New Files**
+            **New Files**: {{ newFilesCount }}
             {{ newFiles }}
 
-            **New Tests**
+            **New Tests**: {{ newTestsCount }}
             {{ newTests }}
