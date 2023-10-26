@@ -14,5 +14,5 @@ automations:
         args:
           comment: |
             {% for file in newFiles %}
-            * {{ (file | map(attr='new_file') ) }}
+            * (file | map(attr='new_file'))
             {% endfor %}
