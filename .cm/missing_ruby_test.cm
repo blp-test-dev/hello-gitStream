@@ -2,7 +2,7 @@
 manifest:
   version: 1.0
 
-newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/^app\/(?!.*\_spec\.rb$).*\.rb$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
+newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/^src\/(?!.*\_spec\.rb$).*\.rb$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 newTests: {{ source.diff.files | filter(attr='new_file', regex=r/spec\/.*\_spec\.rb$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
 
 newFilesCount: {{ source.diff.files | filter(attr='new_file', regex=r/^src\/(?!.*\_spec\.rb$).*\.rb$/) | filter(attr='original_file', regex=r/^$/) | length }}
