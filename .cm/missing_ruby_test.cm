@@ -11,7 +11,7 @@ newTestsCount: {{ source.diff.files | filter(attr='new_file', regex=r/spec\/.*\_
 automations:
   review_missing_ruby_tests:
     if:
-      - {{ newFilesCount != newTestsCount }}
+      - {{ newFilesCount > newTestsCount }}
     run: 
       - action: add-label@v1
         args:
