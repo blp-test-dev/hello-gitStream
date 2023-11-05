@@ -4,7 +4,7 @@
 public class RandomClass {
 
     /**
-     * This is a random method that prints "Hello, world!".
+     * This
      */
     public void sayHello() {
         System.out.println("Hello, world!");
