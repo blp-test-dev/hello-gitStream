@@ -5,3 +5,36 @@ func helloWorld() {
 }
 
 helloWorld()
+
+
+import Swift
+
+func helloWorld() {
+    print("Hello, World!")
+}
+
+helloWorld()
+
+import Swift
+
+func helloWorld() {
+    print("Hello, World!")
+}
+
+helloWorld()
+
+import Swift
+
+func helloWorld() {
+    print("Hello, World!")
+}
+
+helloWorld()
+
+import Swift
+
+func helloWorld() {
+    print("Hello, World!")
+}
+
+helloWorld()
