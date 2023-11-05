@@ -1,0 +1,1 @@
+All new files in the '/src' directory must include the required copyright header at the top of the file. For example: // Copyright (c) ORG and contributors. All rights reserved. // Licensed under the MIT license. See LICENSE file in the project root for details.
