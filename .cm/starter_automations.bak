@@ -20,8 +20,6 @@
 manifest:
   version: 1.0
 
-# This automation demonstrates all of GitHub's default label colors.
-# This is meant to be used as a reference, not as an automation in your repo.
 automations:
   # Post a comment that recommends reviewers based on their knowledge of the files in the PR.
   # https://docs.gitstream.cm/automations/standard/explain-code-experts/
