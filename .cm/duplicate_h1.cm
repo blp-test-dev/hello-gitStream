@@ -11,4 +11,4 @@ automations:
           comment: | 
               The file being modified has a duplicate H1 heading. Please create only one H1 for the main heading. Creating one H1 Heading creates a meaningful structure and makes it easy for indexing search engines.
 
-duplicateH1: {{ source.diff.files | match(attr='new_content', regex=r/<h1>(?s:.)*<h1>/) }}
+duplicateH1: {{ source.diff.files | match(attr='new_content', regex=r/<h1>.*<h1>/) }}
