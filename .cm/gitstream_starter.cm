@@ -25,7 +25,7 @@ manifest:
 # +----------------------------------------------------------------------------+
 
 # Change review_team to match your organization or repo's primary review team. 
-# The format is {{Git Organization Name}} / {{Team Name}}
+# The format is Git Organization Name / Team Name
 review_team: 'my-org/team-name'
 
 # List of files that should trigger a sensitive file change review.
