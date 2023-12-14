@@ -1,0 +1,28 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  output_source_object:
+    if:
+      - {{ setting.OUTPUT_SOURCE }}
+    run:
+    - action: add-comment@v1
+      args:
+        comment: |
+          source
+          - diff
+            - files ({{ source.diff.files | length }}):
+              {% for file in files %}
+              - Original file: {{ source.diff.files | map(attr='original_file') | dump | safe }}
+                - New file: {{ source.diff.files | map(attr='new_file') | dump | safe }}
+                - Diff: {{ pr.diff }}
+                - Original content: {{ pr.original_content }}
+                - New content: {{ pr.new_content }}
+              {% endfor %} 
+
+
+setting:
+  # Set to true to enable some debug output to see variable values
+  OUTPUT_SOURCE: true

@@ -1,0 +1,40 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  best_practices:
+    if:
+      - {{ branch.diff.size < 150 }}
+      - {{ (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
+      - {{ branch | estimatedReviewTime < 10 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🌟 Best Practices 🌟"
+          color: {{ colors.green }}
+      - action: add-comment@v1
+        args:
+          comment: "Thank you for following the team's recommended development practices!"
+  estimated_time_to_review:
+    if:
+      - true
+    run:
+      - action: add-label@v1
+        args:
+          label: "{{ calc.etr }} min review"
+          color: {{ colors.red if (calc.etr >= 20) else ( colors.yellow if (calc.etr >= 5) else colors.green ) }}
+
+calc:
+  etr: {{ branch | estimatedReviewTime }}
+
+
+colors:
+  red: 'b60205'
+  yellow: 'fbca04'
+  green: '0e8a16'
+
+has:
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net/) }}

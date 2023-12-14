@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+manifest:
+      version: 1.0
+
+automations:
+  # Apply an update labels that indicate how long it takes to review the PR
+  # This uses the `calc` custom expression found at the bottom of this file.
+  estimated_time_to_review:
+    # Triggered for all new PRs and PR changes
+    if:
+      - true
+    # Apply a color-coded label that indicates how long it would take someone to review the PR
+    run:
+      - action: add-label@v1
+        args:
+          label: "{{ calc.etr }} min review"
+          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
