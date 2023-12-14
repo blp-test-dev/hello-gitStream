@@ -1,0 +1,68 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  # Automatically flag large PRs and suggest breaking up the PR.
+  flag_large_change:
+    if:
+      - {{ branch.diff.size >= 150 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: '⚠️ Complex Change'
+          color: {{ colors.yellow }}
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR has a large number of lines changed. 
+            Please consider breaking it up into smaller, more manageable changes.
+  # Automatically provide a link to Jira tickets based on branch name.
+  link_jira:
+    if:
+      - {{ branch.name | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: Issue Tracker Link - [{{ticketid}}](https://example.atlassian.net/browse/{{ticketid}})
+  # Automatically request changes when someone uses a deprecated API.
+  {% for item in deprecated %}
+  review_deprecated_component_{{ item.old }}:
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=item.regex) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'deprecated-component'
+          color: '#FF0000'
+      - action: request-changes@v1
+        args:
+          comment: |
+            `{{ item.old }}` component is deprecated, use `{{ item.new }}` instead
+  {% endfor %}
+  # Estimate review time.
+  estimated_time_to_review:
+    if:
+      - true
+    run:
+      - action: add-label@v1
+        args:
+          label: "{{ calc.etr }} min review"
+          color: {{ colors.red if (calc.etr >= 20) else ( colors.yellow if (calc.etr >= 5) else colors.green ) }}
+
+# These are the deprecated files that are evaluated in review_deprecated_components
+deprecated:
+  - regex: r/oldAPI/
+    old: oldAPI
+    new: newAPI
+  - regex: r/anotherOldAPI/
+    old: anotherOldAPI
+    new: anotherNewAPI
+
+ticketid: {{ branch.name | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+
+colors:
+  red: 'b60205'
+  yellow: 'fbca04'
+  green: '0e8a16'

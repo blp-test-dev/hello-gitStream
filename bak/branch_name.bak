@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  enforce_branch_name: 
+    if:  
+      - {{ branch.name | includes(term='feature') | nope  }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "❗ Incorrect Branch Name"
+      - action: close@v1
+
+branchConvention:
+  requiredPrefixes: ['feature', 'stable', 'fix']
+  # This matches Jira ticket naming conventions, modify the regex to suit your project
+  branchRegex: /\b\w+-\w+\b/
+  ignoreList: [ 'development', 'staging' ]

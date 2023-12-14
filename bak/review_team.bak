@@ -1,0 +1,31 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  {% for item in teams %}
+  review_team_{{ item.name }}: 
+    if:  
+      - {{ pr.author_teams | includes(term=item.term) }}
+    run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: {{ item.reviewers }}
+      - action: add-reviewers@v1
+        args:
+          reviewers: [{{ item.team }}] 
+      - action: add-comment@v1
+        args: 
+          comment: | 
+            This PR requires {{ item.reviewers }} reviewer(s) from the {{ item.name }} team.
+  {% endfor %}
+
+teams:
+  - term: mentors
+    name: Security
+    reviewers: 1
+    team: blp-test-dev/security
+  - term: mobile-team
+    name: Mobile
+    reviewers: 4
+    team: org/mobile-team

@@ -1,0 +1,36 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/^src\/(?!.*\.test\.js$).*\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
+newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*\.test\.js$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
+
+{% set missList = [] %}
+{% set testList = [] %}
+{% for file in newFiles %}
+{% set parsedName = ( file | string | replace(".js", "") ) %}
+{% set testList = testList + [parsedName] %}
+{% if (newTests | match(term=parsedName) | nope ) %}
+{% set missList = missList + [file] %}
+{% endif %}
+{% endfor %} 
+
+automations:
+  new_files_check:
+    if:
+      - true
+    run: 
+      - action: add-comment@v1
+        args:
+          comment: |
+            **New Files**
+            {{ newFiles }}
+            **New Tests**
+            {{ newTests }}
+            **Missing Tests**
+            {{ missList }}
+            **Parsed Names**
+            {{ testList }}
+
+
+capture(regex=r/.*(?=.js$)/)

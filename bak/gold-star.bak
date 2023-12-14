@@ -1,0 +1,22 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  gold-star:
+    # Triggered for PRs that have at least 1 test, 5 or less files, 
+    # and a branch name that includes a Jira ticket prefix
+    if:
+      - {{ files | match(regex=r/(test|spec)/) | some }}
+      - {{ files | length <= 5 }}
+      - {{ branch.name | match(regex=r/[A-Za-z]{2,}-\d+.*/) }} 
+    run:
+      - action: add-label@v1
+        args:
+          label: 'Best Practices ⭐'
+          color: '#F4EBD0'
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR follows our company's recommended best practices.
+            Great work!
+

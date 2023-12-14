@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  safe_changes:
+    if:
+      - {{ is.docs }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'safe-changes'
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR is considered a safe change and has been automatically approved.
+is:
+  docs: {{ files | allDocs }}
