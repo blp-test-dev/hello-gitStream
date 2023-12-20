@@ -1,5 +1,6 @@
-const enabledUsers = ['BenLloydPearson', 'blp1989'];
 
-return enabledUsers;
-
+module.exports = () => {
+  const enabledUsers = ['BenLloydPearson', 'blp1989'];
+  return enabledUsers;
+}
 
