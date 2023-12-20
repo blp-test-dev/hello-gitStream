@@ -10,5 +10,6 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ watchlist }}
+            {{ enabledUsers }}
 
+enabledUsers: {{ watchlist }}
