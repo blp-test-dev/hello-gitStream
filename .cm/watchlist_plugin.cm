@@ -1,0 +1,15 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  {% for item in watchlist %}
+  notify_{{ item.owner }}:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ item.owner }}
+  {% endfor %}
