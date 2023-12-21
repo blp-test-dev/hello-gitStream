@@ -1,7 +1,6 @@
-const gitStreamUsers = ["BenLloydPearson", "user2"];
-
-function getGitstreamUsers(text) {
-    return gitStreamUsers;
+function gitstreamUsers() {
+    return JSON.stringify(["BenLloydPearson", "user2"]);
 }
 
-module.exports = gitStreamUsers;
+module.exports = gitstreamUsers;
+
