@@ -6,8 +6,8 @@ manifest:
 automations:
   banana_check:
     if:
-      - {{ pr.author | match(list=gitstreamUsers) | some }}
+      - true
     run:
       - action: add-comment@v1
         args:
-          comment: {{ pr.author }} is a gitStream user.
+          comment: {{ "" | gistreamUsers | dump }}
