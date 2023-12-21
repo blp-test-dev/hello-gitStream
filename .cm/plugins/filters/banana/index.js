@@ -1,5 +1,5 @@
- function banana(text) {
-  return text.replaceAll('banana', '🍌');
-}
+function banana(text) {
+    return text.replaceAll('banana', '🍌');
+};
 
-module.exports = banana
+module.exports = banana;
