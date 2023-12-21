@@ -1,6 +1,8 @@
+
 function gitstreamUsers() {
-    return JSON.stringify(["BenLloydPearson", "user2"]);
+    return "Hello World";
 }
 
 module.exports = gitstreamUsers;
+
 
