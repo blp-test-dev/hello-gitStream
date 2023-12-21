@@ -6,9 +6,9 @@ manifest:
 automations:
   banana_check:
     if:
-      - {{ pr.description | includes(term='banana') }}
+      - true
     run:
       - action: add-comment@v1
         args:
           comment: |
-            BANANAS! {{ pr.description | banana }}
+            {{ gitstreamUsers }}
