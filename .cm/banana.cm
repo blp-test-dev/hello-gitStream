@@ -10,4 +10,4 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ "" | gistreamUsers | dump }}
+          comment: {{ "" | gitstreamUsers | dump }}
