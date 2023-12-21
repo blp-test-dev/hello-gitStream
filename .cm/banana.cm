@@ -4,17 +4,10 @@ manifest:
   version: 1.0
 
 automations:
-  post_value:
-    if:
-      - true
-    run:
-      - action: add-comment@v1
-        args:
-          comment: {{ "" | gitstreamUsers | dump }}
   is_gitstream_user:
     if:
-      - {{ pr.author | gitstreamUsers }}
+      - {{ pr.author | gitstreamUsers | nope }}
     run:
       - action: add-comment@v1
         args:
-          comment: {{ pr.author }} is a gitStream user.
+          comment: {{ pr.author }} is not a gitStream user.
