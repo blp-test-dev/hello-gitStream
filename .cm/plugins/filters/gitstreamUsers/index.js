@@ -1,6 +1,5 @@
+function users() {
+    return ["BenLloydPearson", "user2"];
+};
 
-module.exports = () => {
-    return "Hello World";
-}
-
-
+module.exports = users;
