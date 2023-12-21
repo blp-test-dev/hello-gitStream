@@ -6,7 +6,7 @@ manifest:
 automations:
   is_gitstream_user:
     if:
-      - {{ not | pr.author | isGitstreamUser }}
+      - {{ not pr.author | isGitstreamUser }}
     run:
       - action: add-comment@v1
         args:
