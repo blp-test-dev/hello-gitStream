@@ -4,10 +4,17 @@ manifest:
   version: 1.0
 
 automations:
-  banana_check:
+  post_value:
     if:
       - true
     run:
       - action: add-comment@v1
         args:
           comment: {{ "" | gitstreamUsers | dump }}
+  is_gitstream_user:
+    if:
+      - {{ pr.author | gitstreamUsers }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{ pr.author }} is a gitStream user.
