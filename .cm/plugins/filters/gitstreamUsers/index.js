@@ -1,7 +1,7 @@
-const gitStreamUsers = ["BenLloydPearson", "user2"]
+const gitStreamUsers = ["BenLloydPearson", "user2"];
 
 function getGitstreamUsers(text) {
-    return gitStreamUsers
-};
+    return gitStreamUsers;
+}
 
 module.exports = gitStreamUsers;
