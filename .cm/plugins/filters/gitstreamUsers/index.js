@@ -1,5 +1,5 @@
 function users() {
-    return ["BenLloydPearson", "user2"];
+    return JSON.stringify(["BenLloydPearson", "user2"]);
 };
 
 module.exports = users;
