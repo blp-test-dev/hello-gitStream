@@ -10,5 +10,4 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: |
-            {{ gitstreamUsers }}
+          comment: {{ gitstreamUsers }}
