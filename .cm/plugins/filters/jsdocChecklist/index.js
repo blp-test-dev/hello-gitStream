@@ -15,18 +15,22 @@ function jsdocChecklist(fileMetadataList) {
         if (/\.js$/.test(new_file) && /^$/.test(fileMetadata.original_file)) {
             console.log(`${new_file} is a new file`)
             // Split the new content into lines
-            const lines = new_content.split('\n');
+//            const lines = new_content.split('\n');
 
             // Check for the presence of specified JSDoc elements
             const requiredTags = ['@description', '@module', '@returns', '@example', '@license'];
             const missingTags = [];
 
             requiredTags.forEach((tag) => {
-                const tagExists = lines.some((line) => line.includes(tag));
-                if (!tagExists) {
+                if (new_content.indexOf(tag) === -1) {
                     console.log(`${new_file} is missing ${tag}`)
                     missingTags.push(tag);
                 }
+//                const tagExists = lines.some((line) => line.includes(tag));
+//                if (!tagExists) {
+//                    console.log(`${new_file} is missing ${tag}`)
+//                    missingTags.push(tag);
+//                }
             });
 
             // Generate checklist item
