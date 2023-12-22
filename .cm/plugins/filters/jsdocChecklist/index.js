@@ -1,35 +1,40 @@
 /**
- * Check if specific JSDoc tags are present in the given JavaScript code.
- * @param {string} filediff - JavaScript code as a string.
- * @returns {string} Markdown unordered list indicating the presence of tags.
+ * Generate a Markdown checklist indicating which new JavaScript files include specified JSDoc elements.
+ * @param {Array} fileMetadataList - List of file metadata objects.
+ * @returns {string} Markdown checklist.
  */
-function checkJSDocTagsPresence(filediff) {
-    // Define the tags to check for
-    const tagsToCheck = ['@description', '@module', '@returns', '@example', '@license'];
+function generateMarkdownChecklist(fileMetadataList) {
+    const checklistItems = [];
 
-    // Initialize an object to store tag presence
-    const tagPresence = {};
+    fileMetadataList.forEach((fileMetadata) => {
+        const { new_file, new_content } = fileMetadata;
 
-    // Split the code into lines
-    const lines = filediff.split('\n');
+      // Check if the file is a new JavaScript file
+        if (/\.js$/.test(new_file) && /^$/.test(fileMetadata.original_file)) {
+        // Split the new content into lines
+        const lines = new_content.split('\n');
 
-    // Iterate through lines to check for tags
-    lines.forEach((line) => {
-        tagsToCheck.forEach((tag) => {
-            if (line.includes(tag)) {
-            tagPresence[tag] = true;
+        // Check for the presence of specified JSDoc elements
+        const requiredTags = ['@description', '@module', '@returns', '@example', '@license'];
+        const missingTags = [];
+
+        requiredTags.forEach((tag) => {
+            const tagExists = lines.some((line) => line.includes(tag));
+            if (!tagExists) {
+            missingTags.push(tag);
+            }
+        });
+
+        // Generate checklist item
+        const checklistItem = `- [${new_file}](${new_file}) - ${
+            missingTags.length === 0 ? 'All required tags present' : 'Missing tags: ' + missingTags.join(', ')
+        }`;
+        checklistItems.push(checklistItem);
         }
     });
-});
 
-// Generate Markdown unordered list
-let markdownList = '';
-tagsToCheck.forEach((tag) => {
-    const isPresent = tagPresence[tag] ? '✅' : '❌';
-    markdownList += `* ${tag} - ${isPresent}\n`;
-});
+    // Generate Markdown checklist
+    const markdownChecklist = checklistItems.join('\n');
 
-return markdownList;
+    return markdownChecklist;
 }
-
-module.exports = checkJSDocTagsPresence;
