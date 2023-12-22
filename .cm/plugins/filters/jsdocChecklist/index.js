@@ -3,7 +3,7 @@
  * @param {Array} fileMetadataList - List of file metadata objects.
  * @returns {string} Markdown checklist.
  */
-function generateMarkdownChecklist(fileMetadataList) {
+function jsdocChecklist(fileMetadataList) {
     const checklistItems = [];
 
     fileMetadataList.forEach((fileMetadata) => {
@@ -38,3 +38,5 @@ function generateMarkdownChecklist(fileMetadataList) {
 
     return markdownChecklist;
 }
+
+module.exports = jsdocChecklist;
