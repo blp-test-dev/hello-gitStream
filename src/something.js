@@ -1,4 +1,5 @@
 // Add user who want to enable gitStream to this list.
+
 const gitstreamUsers = ["user1", "user2"];
 /**
  * @description Returns true if the username that is passed to this function is specified in a predefined list of users. 
