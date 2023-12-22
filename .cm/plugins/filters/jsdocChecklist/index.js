@@ -7,6 +7,7 @@ function jsdocChecklist(fileMetadataList) {
     const checklistItems = [];
 
     fileMetadataList.forEach((fileMetadata) => {
+        console.log(fileMetadata)
         const { new_file, new_content } = fileMetadata;
 
       // Check if the file is a new JavaScript file
@@ -40,3 +41,5 @@ function jsdocChecklist(fileMetadataList) {
 }
 
 module.exports = jsdocChecklist;
+
+
