@@ -4,13 +4,11 @@ manifest:
   version: 1.0
 
 automations:
-  is_gitstream_user:
+  jsdoc_checklist:
     if:
       - true
     run:
       - action: add-comment@v1
         args:
           comment: |
-            This is a comment
-
-checklist: {{ source.diff.files | jsdocChecklist }}
+            {{ source.diff.files | jsdocChecklist }}
