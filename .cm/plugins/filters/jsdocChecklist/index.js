@@ -4,6 +4,8 @@
  * @returns {string} Markdown checklist.
  */
 function jsdocChecklist(fileMetadataList) {
+    console.log('Generating JSDoc checklist...');
+    console.log(fileMetadataList);
     const checklistItems = [];
 
     fileMetadataList.forEach((fileMetadata) => {
@@ -42,3 +44,4 @@ function jsdocChecklist(fileMetadataList) {
 }
 
 module.exports = jsdocChecklist;
+
