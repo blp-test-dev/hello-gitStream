@@ -7,30 +7,31 @@ function jsdocChecklist(fileMetadataList) {
     const checklistItems = [];
 
     fileMetadataList.forEach((fileMetadata) => {
-        console.log(fileMetadata)
         const { new_file, new_content } = fileMetadata;
 
       // Check if the file is a new JavaScript file
         if (/\.js$/.test(new_file) && /^$/.test(fileMetadata.original_file)) {
-        // Split the new content into lines
-        const lines = new_content.split('\n');
+            console.log(`${new_file} is a new file`)
+            // Split the new content into lines
+            const lines = new_content.split('\n');
 
-        // Check for the presence of specified JSDoc elements
-        const requiredTags = ['@description', '@module', '@returns', '@example', '@license'];
-        const missingTags = [];
+            // Check for the presence of specified JSDoc elements
+            const requiredTags = ['@description', '@module', '@returns', '@example', '@license'];
+            const missingTags = [];
 
-        requiredTags.forEach((tag) => {
-            const tagExists = lines.some((line) => line.includes(tag));
-            if (!tagExists) {
-            missingTags.push(tag);
-            }
-        });
+            requiredTags.forEach((tag) => {
+                const tagExists = lines.some((line) => line.includes(tag));
+                if (!tagExists) {
+                    console.log(`${new_file} is missing ${tag}`)
+                    missingTags.push(tag);
+                }
+            });
 
-        // Generate checklist item
-        const checklistItem = `- [${new_file}](${new_file}) - ${
-            missingTags.length === 0 ? 'All required tags present' : 'Missing tags: ' + missingTags.join(', ')
-        }`;
-        checklistItems.push(checklistItem);
+            // Generate checklist item
+            const checklistItem = `- [${new_file}](${new_file}) - ${
+                missingTags.length === 0 ? 'All required tags present' : 'Missing tags: ' + missingTags.join(', ')
+            }`;
+            checklistItems.push(checklistItem);
         }
     });
 
@@ -41,5 +42,3 @@ function jsdocChecklist(fileMetadataList) {
 }
 
 module.exports = jsdocChecklist;
-
-
