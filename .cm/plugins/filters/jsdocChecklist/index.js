@@ -38,8 +38,7 @@ function jsdocChecklist(fileMetadataList) {
     const markdownChecklist = checklistItems.join('\n');
     console.log(markdownChecklist)
 
-    return markdownChecklist;
+    return String(markdownChecklist);
 }
 
 module.exports = jsdocChecklist;
-
