@@ -6,8 +6,10 @@ manifest:
 automations:
   is_gitstream_user:
     if:
-      - {{ pr.author | isGitstreamUser }}
+      - true
     run:
       - action: add-comment@v1
         args:
-          comment: {{ pr.author }} is a gitStream user.
+          comment: {{ jsdocChecklist }}
+
+jsdocChecklist: {{ source.diff.files | jsdocChecklist }}
