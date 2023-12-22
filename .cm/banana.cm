@@ -10,6 +10,6 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ jsdocChecklist }}
+          comment: {{ checklist }}
 
-jsdocChecklist: {{ source.diff.files | jsdocChecklist }}
+checklist: {{ source.diff.files | jsdocChecklist }}
