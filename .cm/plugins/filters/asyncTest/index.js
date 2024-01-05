@@ -1,5 +1,4 @@
 const asyncTest = async (params, callback) => {
-  const webhookUrl = 'WEBHOOK_URL';
   const message = {
     text: "Hello World!",
   };
