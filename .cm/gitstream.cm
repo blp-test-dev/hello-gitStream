@@ -4,11 +4,11 @@ manifest:
   version: 1.0
 
 automations:
-  jsdoc_checklist:
+  async_test:
     if:
       - true
     run:
       - action: add-comment@v1
         args:
           comment: |
-            {{ source.diff.files | jsdocChecklist }}
+            {{ | asyncTest }}
