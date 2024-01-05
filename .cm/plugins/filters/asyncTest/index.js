@@ -8,5 +8,6 @@ const asyncTest = async (params, callback) => {
 
 module.exports = {
    async: true,
-   filter: asyncTest
+   filter: asyncTest,
+   return: callback(asyncTest)
 }
