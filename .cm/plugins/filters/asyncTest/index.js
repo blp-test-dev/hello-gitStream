@@ -1,4 +1,4 @@
-const asyncTest = async (params, callback) => {
+const myFunction = async (params, callback) => {
     const message = {
         text: "Hello World!",
     };
