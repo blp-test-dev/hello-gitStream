@@ -9,7 +9,6 @@
 **/
 function sortFiles(fileMetadataList, directory) {
     const subdirectoryGroups = {};
-    console.log(fileMetadataList);
     fileMetadataList.forEach((fileMetadata) => {
         const { new_file } = fileMetadata;
         console.log("new_file: "+new_file);
@@ -28,6 +27,7 @@ function sortFiles(fileMetadataList, directory) {
             subdirectoryGroups[subdirectory].push(fileMetadata);
         }
     });
+    console.log(subdirectoryGroups);
     return subdirectoryGroups;
 }
 
