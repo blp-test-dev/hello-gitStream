@@ -15,4 +15,4 @@ automations:
 
 
 gitStreamPlugins: {{ source.diff.files | sortFiles }}
-newPlugins: {{ gitStreamPlugins | extractNewFiles("index.js") }}
+newPlugins: {{ source.diff.files | sortFiles | extractNewFiles("index.js") }}
