@@ -11,8 +11,9 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ gitStreamPlugins }}
+            {{ newPlugins }}
 
 
 gitStreamPlugins: {{ source.diff.files | sortFiles }}
+newPlugins: {{ gitStreamPlugins | extractNewFiles }}
 
