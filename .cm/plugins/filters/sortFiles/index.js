@@ -10,8 +10,9 @@
 function sortFiles(fileMetadataList, directory) {
     const subdirectoryGroups = {};
     fileMetadataList.forEach((fileMetadata) => {
+        //console.log(fileMetadata)
         const { new_file } = fileMetadata;
-        const regexPattern = new RegExp(`^${directory.replace(/\//g, '\\/')}/([^/]+)`);
+        const regexPattern = new RegExp(`^${directory}\/([^\/]+)\/`);
     
         // Extract the subdirectory
         const match = new_file.match(regexPattern);
