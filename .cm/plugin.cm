@@ -15,7 +15,4 @@ automations:
 
 
 gitStreamPlugins: {{ source.diff.files | sortFiles }}
-newPlugins: {{ gitStreamPlugins | extractNewFiles }}
-missingJSDocTags: {{ newPlugins | extractMissingJSDocTags }}
 
-missingJSDocComment: {{ missingJSDocTags | formatComment("missingJSDoc") }}
