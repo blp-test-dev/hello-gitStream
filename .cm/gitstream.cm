@@ -4,11 +4,18 @@ manifest:
   version: 1.0
 
 automations:
-  async_test:
+  plugin_test:
     if:
       - true
     run:
       - action: add-comment@v1
         args:
           comment: |
-            {{ "" | asyncTest }}
+            {{ missingJSDocComment }}
+
+
+gitStreamPlugins: {{ source.diff.files | sortFiles }}
+newPlugins: {{ gitStreamPlugins | extractNewFiles }}
+missingJSDocTags: {{ newPlugins | extractMissingJSDocTags }}
+
+missingJSDocComment: {{ missingJSDocTags | formatComment("missingJSDoc"))}}
