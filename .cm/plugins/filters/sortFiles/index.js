@@ -28,7 +28,7 @@ function sortFiles(fileMetadataList, directory) {
         }
     });
     console.log(subdirectoryGroups);
-    return subdirectoryGroups;
+    return JSON.stringify(subdirectoryGroups);
 }
 
 module.exports = sortFiles;
