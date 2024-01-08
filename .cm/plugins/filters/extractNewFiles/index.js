@@ -3,7 +3,7 @@ function extractNewFiles(subObjects, fileType) {
 
     const filteredSubObjects = {};
 
-    for (const [plugin, objects] of Object.entries(subObjects)) {
+    for (const [plugin, objects] of Object.entries(JSON.parse(subObjects))) {
         const hasIndexJS = objects.some((subObject) => subObject.new_file.includes(fileType) && subObject.original_file === '');
     
         if (hasIndexJS) {
