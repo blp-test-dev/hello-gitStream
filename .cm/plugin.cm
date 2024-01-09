@@ -14,4 +14,4 @@ automations:
             {{ missingJSDocComment | dump }}
 
 
-missingJSDocComment: {{source.diff.files | sortFiles("plugins/filters") | extractNewFiles("index.js") | extractMissingJSDocTags | formatComment('missingJSDoc') }}
+missingJSDocComment: {{source.diff.files | sortFiles("plugins/filters") | extractNewFiles("index.js") }}
