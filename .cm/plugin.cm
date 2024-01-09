@@ -14,8 +14,4 @@ automations:
             {{ missingJSDocComment }}
 
 
-gitStreamPlugins: {{ source.diff.files | sortFiles("plugins/filters") }}
-newPlugins: {{ gitStreamPlugins | extractNewFiles("index.js") }}
-missingJSDocTags: {{ newPlugins | extractMissingJSDocTags }}
-
-missingJSDocComment: {{ missingJSDocTags | formatComment("missingJSDoc") }}
+missingJSDocComment: {{source.diff.files | sortFiles("plugins/filters") | extractNewFiles("index.js") | missingJSDocTags | formatComment("missingJSDoc") }}
