@@ -20,3 +20,5 @@ function extractNewFiles(subObjects, fileType) {
     }
     return filteredSubObjects;
 }
+
+module.exports = extractNewFiles;
