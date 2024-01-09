@@ -29,7 +29,7 @@ function sortFiles(fileMetadataList, directory) {
         }
     });
     console.log("File sorting complete.");
-    return JSON.stringify(subdirectoryGroups);
+    return subdirectoryGroups;
 }
 
 module.exports = sortFiles;
