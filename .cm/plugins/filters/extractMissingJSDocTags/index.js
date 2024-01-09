@@ -1,6 +1,7 @@
 const requiredjsdocTags = ['@description', '@module', '@returns', '@param', '@example', '@license'];
 
-function extractMissingJsdocTags (fileMetadata) {
+function extractMissingJSDocTags (fileMetadata) {
+    console.log("Identifying missing JSDoc tags...")
     const response = [];
 
     for (fileList in fileMetadata) {
@@ -22,8 +23,8 @@ function extractMissingJsdocTags (fileMetadata) {
         };
         response.push(output);
     }
-    console.log(response)
+    console.log("JSDoc tag analysis complete.")
     return response;
 }
 
-module.exports = extractMissingJsdocTags;
+module.exports = extractMissingJSDocTags;
