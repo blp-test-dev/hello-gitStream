@@ -11,8 +11,11 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ newPlugins }}
+            {{ missingJSDocComment }}
 
 
 gitStreamPlugins: {{ source.diff.files | sortFiles("plugins/filters") }}
-newPlugins: {{ source.diff.files | sortFiles("plugins/filters") | extractNewFiles("index.js") }}
+newPlugins: {{ gitStreamPlugins | extractNewFiles("index.js") }}
+missingJSDocTags: {{ newPlugins | extractMissingJSDocTags }}
+
+missingJSDocComment: {{ missingJSDocTags | formatComment("missingJSDoc") }}
