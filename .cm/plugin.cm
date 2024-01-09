@@ -10,7 +10,8 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ missingJSDocComment }}
+          comment: |
+            {{ missingJSDocComment }}
 
 
-missingJSDocComment: {{source.diff.files | sortFiles("plugins/filters") | extractNewFiles("index.js") | extractMissingJSDocTags | formatComment}}
+missingJSDocComment: {{source.diff.files | sortFiles("plugins/filters") | extractNewFiles("index.js") | extractMissingJSDocTags | formatComment | dump }}
