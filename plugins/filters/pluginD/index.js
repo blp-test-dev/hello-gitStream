@@ -1,4 +1,3 @@
-// Add users who you want to add to the flag list.
 const flaggedUsers = ["user1", "user2"];
 /**
  * @module isFlaggedUser
