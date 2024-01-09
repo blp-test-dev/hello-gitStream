@@ -28,7 +28,7 @@ function sortFiles(fileMetadataList, directory) {
             subdirectoryGroups[subdirectory].push(fileMetadata);
         }
     });
-    console.log("File sorting complete.")
+    console.log("File sorting complete.");
     return JSON.stringify(subdirectoryGroups);
 }
 
