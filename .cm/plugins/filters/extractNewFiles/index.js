@@ -1,5 +1,5 @@
 function extractNewFiles(subObjects, fileType) {
-    console.log("Detecting new files that meet the specified criteria...")
+    console.log("Detecting new files that match ${fileType}...")
 
     let filteredSubObjects = {};
 
