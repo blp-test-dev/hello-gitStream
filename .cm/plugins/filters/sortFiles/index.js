@@ -8,7 +8,7 @@
  * @license MIT
 **/
 function sortFiles(fileMetadataList, directory) {
-    console.log('Sorting files ${directory}...');
+    console.log('Sorting files inside'+directory);
     const subdirectoryGroups = {};
     fileMetadataList.forEach((fileMetadata) => {
         //console.log(fileMetadata)
@@ -28,7 +28,7 @@ function sortFiles(fileMetadataList, directory) {
             subdirectoryGroups[subdirectory].push(fileMetadata);
         }
     });
-    console.log("File sorting complete.")
+    console.log("File sorting complete.");
     return JSON.stringify(subdirectoryGroups);
 }
 

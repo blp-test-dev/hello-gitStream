@@ -1,5 +1,5 @@
 function extractNewFiles(subObjects, fileType) {
-    console.log("Detecting new files that match ${fileType}...")
+    console.log("Detecting new files that match"+fileType);
 
     let filteredSubObjects = {};
 
@@ -18,7 +18,7 @@ function extractNewFiles(subObjects, fileType) {
             delete filteredSubObjects[k];
         }
     }
-    console.log("New file analysis complete.")
+    console.log("New file analysis complete.");
     return filteredSubObjects;
 }
 
