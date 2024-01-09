@@ -1,7 +1,7 @@
 function extractNewFiles(subObjects, fileType) {
     console.log("Detecting new files that match"+fileType);
 
-    let filteredSubObjects = {};
+    const filteredSubObjects = {};
 
     for (const [plugin, objects] of Object.entries(subObjects)) {
         const hasIndexJS = objects.some((subObject) => subObject.new_file.includes(fileType) && subObject.original_file === '');
