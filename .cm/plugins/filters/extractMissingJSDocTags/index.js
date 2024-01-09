@@ -22,6 +22,7 @@ function extractMissingJsdocTags (fileMetadata) {
         };
         response.push(output);
     }
+    console.log(response)
     return response;
 }
 
