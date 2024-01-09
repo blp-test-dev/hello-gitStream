@@ -10,7 +10,7 @@ function formatComment(obj) {
     comment += '\nOr, check this box to get recommended text auto-generated for this PR:\n';
     comment += '\n[ ] Auto-generate JSDoc text\n';
     console.log(comment);
-    return 'some text';
+    return String(comment);
 }
 
 module.exports = formatComment;
