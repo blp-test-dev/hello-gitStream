@@ -8,10 +8,11 @@
  * @license MIT
 **/
 function sortFiles(fileMetadataList, directory) {
+    console.log('Sorting files ${directory}...');
     const subdirectoryGroups = {};
     fileMetadataList.forEach((fileMetadata) => {
+        //console.log(fileMetadata)
         const { new_file } = fileMetadata;
-        console.log("new_file: "+new_file);
         const regexPattern = new RegExp(`^${directory}\/([^\/]+)\/`);
     
         // Extract the subdirectory
@@ -27,8 +28,8 @@ function sortFiles(fileMetadataList, directory) {
             subdirectoryGroups[subdirectory].push(fileMetadata);
         }
     });
-    console.log(subdirectoryGroups);
-    return subdirectoryGroups;
+    console.log("File sorting complete.")
+    return JSON.stringify(subdirectoryGroups);
 }
 
 module.exports = sortFiles;
