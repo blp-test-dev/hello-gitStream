@@ -1,7 +1,7 @@
 function extractNewFiles(subObjects, fileType) {
-    console.log("Identifying new files...")
+    console.log("Detecting new files that meet the specified criteria...")
 
-    const filteredSubObjects = {};
+    let filteredSubObjects = {};
 
     for (const [plugin, objects] of Object.entries(subObjects)) {
         const hasIndexJS = objects.some((subObject) => subObject.new_file.includes(fileType) && subObject.original_file === '');
@@ -18,6 +18,7 @@ function extractNewFiles(subObjects, fileType) {
             delete filteredSubObjects[k];
         }
     }
+    console.log("New file analysis complete.")
     return filteredSubObjects;
 }
 
