@@ -11,4 +11,4 @@ automations:
         - action: send-slack-message@v1
           args:
             webhook_url: "{{ env.SLACK_WEBHOOK }}"
-            message: "Congrats to {{ pr.author }} for the amazing new PR, '{{ pr.title }}'! Check it out at https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
+            message: ":tada: Congrats to Liz Cranston for the amazing new PR: '{{ pr.title }}'! :tada: Check it out at https://github.com/acme-co/webapp/pull/{{ pr.number }}"
