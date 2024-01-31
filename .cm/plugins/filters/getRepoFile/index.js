@@ -23,7 +23,7 @@ async function getRepoFile(repo, path, auth) {
         path
     });
 
-    return Buffer.from(res.data.content, 'base64').toString()
+    return callback(error, Buffer.from(res.data.content, 'base64').toString());
 }
 
 module.exports = {
