@@ -4,11 +4,14 @@ manifest:
   version: 1.0
 
 automations:
-  slack_auto_recognition:
+  get_repo_file:
     if:
-        - true
+      - true
     run:
-        - action: send-slack-message@v1
-          args:
-            webhook_url: "{{ env.SLACK_WEBHOOK }}"
-            message: "A PR has modified the docs. See https://github.com/acme-co/webapp/pull/{{ pr.number }}"
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ content }}
+
+
+content: {{ repo | getRepoFile(path='README.md', auth=env.GITSTREAM_TOKEN) | dump }}
