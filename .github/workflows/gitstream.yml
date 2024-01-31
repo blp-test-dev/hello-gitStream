@@ -37,6 +37,7 @@ jobs:
       ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
       JIRA_API_AUTH: ${{ secrets.JIRA_API_AUTH }}
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      GITSTREAM_TOKEN: $ {{ secrets.GITSTREAM_TOKEN }}
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
