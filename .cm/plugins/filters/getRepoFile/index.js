@@ -11,6 +11,7 @@ const { Octokit } = require("@octokit/rest");
 
 async function getRepoFile(repo, path, auth) {
     authString = String(auth);
+    console.log (repo.owner, repo.name, path, authString)
     const octokit = new Octokit({
         request: { fetch },
         auth: authString,
