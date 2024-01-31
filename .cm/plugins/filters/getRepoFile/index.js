@@ -24,4 +24,7 @@ async function getRepoFile(repo, path, auth) {
     return Buffer.from(res.data.content, 'base64').toString()
 }
 
-module.exports = getRepoFile;
+module.exports = {
+    async: true,
+    filter: myFilter
+}
