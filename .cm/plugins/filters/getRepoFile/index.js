@@ -9,7 +9,8 @@ const { Octokit } = require("@octokit/rest");
  * @license MIT
  */
 
-async function getRepoFile(repo, path, auth) {
+const getRepoFile = async (repo, path, auth, callback) => {
+    error = null;
     authString = String(auth);
     console.log (repo.owner, repo.name, path, authString)
     const octokit = new Octokit({
