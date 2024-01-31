@@ -26,5 +26,5 @@ async function getRepoFile(repo, path, auth) {
 
 module.exports = {
     async: true,
-    filter: myFilter
+    filter: getRepoFile
 }
