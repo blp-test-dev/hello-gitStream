@@ -14,4 +14,4 @@ automations:
             {{ content }}
 
 
-content: {{ repo | getRepoFile(path='README.md', auth=env.GITSTREAM_TOKEN) | dump }}
+content: {{ repo | getRepoFile(path='README.md', auth="{{ env.GITSTREAM_TOKEN }}") | dump }}
