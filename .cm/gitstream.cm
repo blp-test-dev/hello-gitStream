@@ -11,7 +11,9 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
+            {{ newFiles }}
             {{ content }}
 
 
 content: {{ repo | getRepoFile('README.md', env.GITSTREAM_TOKEN) | dump }}
+newFiles: {{ source.diff.files | extractNewFiles }}
