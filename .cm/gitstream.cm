@@ -6,7 +6,7 @@ manifest:
 automations:
   get_repo_file:
     if:
-      - true
+      - {{ has.unreportedFiles }}
     run:
       - action: add-comment@v1
         args:
@@ -16,4 +16,7 @@ automations:
 
 
 content: {{ repo | getRepoFile('README.md', env.GITSTREAM_TOKEN) | dump }}
-newFiles: {{ source.diff.files | extractNewFiles | dump }}
+newFiles: {{ source.diff.files | extractNewFiles }}
+
+has:
+  unreportedFile: {{ content | includes(list={{newFiles}}) | nope }}
