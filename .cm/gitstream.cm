@@ -16,4 +16,4 @@ automations:
 
 
 content: {{ repo | getRepoFile('README.md', env.GITSTREAM_TOKEN) | dump }}
-newFiles: {{ source.diff.files | extractNewFiles }}
+newFiles: {{ source.diff.files | extractNewFiles | dump }}
