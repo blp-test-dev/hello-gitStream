@@ -19,4 +19,4 @@ content: {{ repo | getRepoFile('README.md', env.GITSTREAM_TOKEN) | dump }}
 newFiles: {{ source.diff.files | extractNewFiles }}
 
 has:
-  unreportedFile: {{ content | includes(list={{newFiles}}) | nope }}
+  unreportedFiles: {{ content | includes(list={{newFiles}}) | nope }}
