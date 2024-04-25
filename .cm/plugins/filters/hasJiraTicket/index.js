@@ -14,8 +14,8 @@ module.exports = {
 
 	// Configure this for your Jira instance and the email associated with your API key.
 	// You can safely use these values because only your API key is sensitive. 
-    const jiraSpaceName = `jiraSpaceName`;
-	const email = `emailhere@example.com`;
+    const jiraSpaceName = `blp-test-dev`;
+	const email = `pearsoben@gmail.com.com`;
 	// If you're concerned about exposing this information,
 	// we recommend using environment variables for your production environment.
 		
