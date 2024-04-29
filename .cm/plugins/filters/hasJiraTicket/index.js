@@ -11,15 +11,13 @@ module.exports = {
 	async: true,
 	filter: async (inputString, password, callback) => {
 		const jql = `key = '${inputString}'`;
-
-	// Configure this for your Jira instance and the email associated with your API key.
-	// You can safely use these values because only your API key is sensitive. 
-	const jiraSpaceName = `blp-test-dev`;
-	const email = `pearsoben@gmail.com.com`;
-	// If you're concerned about exposing this information,
-	// we recommend using environment variables for your production environment.
+    
+    // the following is non-sensitive information, so it's alright to put it here. 
+    // it's the password specifically that must be loaded through a secret environment variable.
+    const email = `pearsoben@gmail.com.com`;
+    const jiraSpaceName = `blp-test-dev`;
 		
-    const resp = await fetch('https://${jiraSpaceName}.atlassian.net/rest/api/2/search', {
+    const resp = await fetch(`https://${jiraSpaceName}.atlassian.net/rest/api/2/search`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
