@@ -3,12 +3,12 @@
 manifest:
   version: 1.0
 
-	# Configure this for your Jira instance and the email associated with your API key.
-	# You can safely use these values because only your API key is sensitive. 
-  jiraSpaceName: "mycompany" # e.g. mycompany.atlassian.net
-	email: "me@example.com"
-	# If you're concerned about exposing this information,
-	# we recommend using environment variables for your production environment.
+# Configure this for your Jira instance and the email associated with your API key.
+# You can safely use these values because only your API key is sensitive. 
+jiraSpaceName: "mycompany" # e.g. mycompany.atlassian.net
+email: "me@example.com"
+# If you're concerned about exposing this information,
+# we recommend using environment variables for your production environment.
 
 
 has_jira_task: {{ pr.title | hasJiraTask(env.JIRA_API_AUTH, jiraSpaceName, email) }}
