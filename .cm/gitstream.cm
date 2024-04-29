@@ -5,8 +5,8 @@ manifest:
 
 # Configure this for your Jira instance and the email associated with your API key.
 # You can safely use these values because only your API key is sensitive. 
-jiraSpaceName: "mycompany" # e.g. mycompany.atlassian.net
-email: "me@example.com"
+jiraSpaceName: "blp-test-dev" # e.g. mycompany.atlassian.net
+email: "pearsoben@gmail.com"
 # If you're concerned about exposing this information,
 # we recommend using environment variables for your production environment.
 
