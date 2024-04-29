@@ -15,4 +15,4 @@ automations:
           url: {{ env.JIRA_WEBHOOK }}
           method: POST
           headers: '{"Content-type": "application/json"}'
-          body: '{"data":{"pr_url": "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"}}'
+          body: '{"data":{"pr_url": "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}","title":"{{ pr.title }}"}}'
