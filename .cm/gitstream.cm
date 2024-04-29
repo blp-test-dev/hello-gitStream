@@ -9,11 +9,10 @@ automations:
   add_jira: 
     if:
       - {{ not has_jira_ticket }}
-      - {{ pr.description | includes(regex=r/\- \[x\] Auto-create Jira Ticket/)}}
     run:
       - action: send-http-request@v1
         args:
           url: env.JIRA_WEBHOOK_URL
           method: POST
           headers: '{"Content-type": "application/json"}'
-          body: '{"summary": "Your summary here 4","description": "My Description","pr_url": "https://example.com"}'
+          body: '{"data":{"pr_url": "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"}}'
