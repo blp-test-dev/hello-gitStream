@@ -29,7 +29,10 @@ module.exports = {
 				'fields': [ 'assignee' ]
 			})
 		});
-
+		console.log(`inputString: ${inputString}`);
+		console.log(`workspace: ${workspace}`);
+		console.log(`email: ${email}`);
+		console.log(`jql: ${jql}`);
 		const results = await resp.json();
 		return callback(null,  !!results.issues?.length);
 	}
