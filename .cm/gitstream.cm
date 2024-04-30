@@ -10,7 +10,7 @@ email: "pearsoben@gmail.com"
 # If you're concerned about exposing this information,
 # we recommend using environment variables for your production environment.
 rl: "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
-prUrl: "https://github.com/blp-test-dev/hello-gitStream/pull/162"
+prUrl: "https://github.com/blp-test-dev/hello-gitStream/pull/156"
 
 fieldID: "cf[10036]"
 
