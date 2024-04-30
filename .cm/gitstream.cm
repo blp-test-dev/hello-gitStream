@@ -13,7 +13,7 @@ prUrl: "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}
 
 fieldID: "cf[10036]"
 
-has_jira_task: {{ pr_url| hasJiraTask(env.JIRA_API_AUTH, fieldID, jiraSpaceName, email) }}
+has_jira_task: {{ prUrl | hasJiraTask(env.JIRA_API_AUTH, fieldID, jiraSpaceName, email) }}
 
 automations:
   automatic_jira_task: 
