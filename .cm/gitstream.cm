@@ -9,9 +9,9 @@ jiraSpaceName: "blp-test-dev" # e.g. mycompany.atlassian.net
 email: "pearsoben@gmail.com"
 # If you're concerned about exposing this information,
 # we recommend using environment variables for your production environment.
+prURL: "https://github.com/blp-test-dev/hello-gitStream/pull/156"
 
-
-has_jira_task: {{ pr.title | hasJiraTask(env.JIRA_API_AUTH, jiraSpaceName, email) }}
+has_jira_task: {{ prURL| hasJiraTask(env.JIRA_API_AUTH, jiraSpaceName, email) }}
 
 automations:
   automatic_jira_task: 
