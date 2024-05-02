@@ -1,31 +1,31 @@
+/**
+ * @module hasJiraTicket
+ * @description Check to see if the input string matches the title of a Jira task.
+ * @param {string} Input - The string to search for a Jira task title.
+ * @param {string} Password - Your Jira API token
+ * @returns {boolean} Returns true if the input string matches a Jira task title. 
+ * @example {{ pr.title | hasJiraTicket }}
+ * @license MIT
+ */
 module.exports = {
-	filter: async (inputString, jiraSpaceName, email, password) => {
-		const jql = `cf[10036] = '${inputString}'`;
+	async: true,
+	filter: async (inputString, password, key, jiraSpaceName, email, callback) => {
+		const jql = `cf[10036] = "${inputString}"`;
 		
-        try {
-            const resp = await fetch(`https://${jiraSpaceName}.atlassian.net/rest/api/2/search`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Basic ' + Buffer.from(`${email}:${password}`).toString('base64')
-                },
-                body: JSON.stringify({
-                    'jql': jql,
-                    'maxResults': 1,
-                    "fieldsByKeys": true,
-                    'fields': [ 'assignee' ]
-                })
-            });
-
-            if (!resp.ok) {
-                throw new Error(`HTTP error! status: ${resp.status}`);
-            }
-
-            const results = await resp.json();
-            return !!results.issues?.length;
-        } catch (error) {
-            console.error('Failed to fetch Jira data:', error);
-            return false;  // or handle errors as needed
-        }
+    const resp = await fetch(`https://${jiraSpaceName}.atlassian.net/rest/api/2/search`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Basic ' + btoa(`${email}:${password}`)
+			},
+			body: JSON.stringify({
+				'jql': jql,
+				'maxResults': 1,
+				"fieldsByKeys": true,
+				'fields': [ 'assignee' ]
+			})
+		});
+		const results = await resp.json();
+		return callback(null,  !!results.issues?.length);
 	}
 }
