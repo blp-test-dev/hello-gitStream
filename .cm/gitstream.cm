@@ -14,7 +14,7 @@ prUrl: "https://github.com/blp-test-dev/hello-gitStream/pull/162"
 
 fieldID: "cf[10036]"
 
-has_jira_task: {{ prUrl | hasJiraTask(env.JIRA_API_AUTH, fieldID, jiraSpaceName, email) }}
+has_jira_task: {{ prUrl  | hasJiraTask(env.JIRA_API_AUTH, fieldID, jiraSpaceName, email) }}
 
 automations:
   automatic_jira_task: 
