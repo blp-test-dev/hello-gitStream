@@ -9,8 +9,8 @@
  */
 module.exports = {
 	async: true,
-	filter: async (inputString, password, jiraSpaceName, email, callback) => {
-		const jql = `10036 = '${inputString}'`;
+	filter: async (inputString, password, key, jiraSpaceName, email, callback) => {
+		const jql = `cf[10036] = "${inputString}"`;
 		
     const resp = await fetch(`https://${jiraSpaceName}.atlassian.net/rest/api/2/search`, {
 			method: 'POST',
@@ -21,10 +21,10 @@ module.exports = {
 			body: JSON.stringify({
 				'jql': jql,
 				'maxResults': 1,
+				"fieldsByKeys": true,
 				'fields': [ 'assignee' ]
 			})
 		});
-
 		const results = await resp.json();
 		return callback(null,  !!results.issues?.length);
 	}

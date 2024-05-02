@@ -9,9 +9,12 @@ jiraSpaceName: "blp-test-dev" # e.g. mycompany.atlassian.net
 email: "pearsoben@gmail.com"
 # If you're concerned about exposing this information,
 # we recommend using environment variables for your production environment.
-prURL: "https://github.com/blp-test-dev/hello-gitStream/pull/156"
+prUrl: "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
+rl: "https://github.com/blp-test-dev/hello-gitStream/pull/162"
 
-has_jira_task: {{ prURL| hasJiraTask(env.JIRA_API_AUTH, jiraSpaceName, email) }}
+fieldID: "cf[10036]"
+
+has_jira_task: {{ prUrl  | hasJiraTask(env.JIRA_API_AUTH, fieldID, jiraSpaceName, email) }}
 
 automations:
   automatic_jira_task: 
@@ -24,7 +27,7 @@ automations:
           url: {{ env.JIRA_WEBHOOK }}
           method: POST
           headers: '{"Content-type": "application/json"}'
-          body: '{"data":{"pr_url": "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}","title":"{{ pr.title }}"}}'
+          body: '{"data":{"pr_url": {{ prUrl }}}}'
       - action: add-comment@v1
         args:
           comment: "gitStream automatically created a Jira task for this PR"
