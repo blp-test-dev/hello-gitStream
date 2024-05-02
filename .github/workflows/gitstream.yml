@@ -39,6 +39,7 @@ jobs:
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       GITSTREAM_TOKEN: ${{ secrets.GITSTREAM_TOKEN }}
       JIRA_WEBHOOK: ${{ secrets.JIRA_WEBHOOK }}
+      JIRA_UPDATE_ISSUE_WEBHOOK: ${{ secrets.JIRA_UPDATE_ISSUE_WEBHOOK }}
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v1
