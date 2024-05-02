@@ -10,7 +10,6 @@ email: "pearsoben@gmail.com"
 # If you're concerned about exposing this information,
 # we recommend using environment variables for your production environment.
 prUrl: "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
-rl: "https://github.com/blp-test-dev/hello-gitStream/pull/162"
 
 fieldID: "cf[10036]"
 
@@ -27,7 +26,7 @@ automations:
           url: {{ env.JIRA_WEBHOOK }}
           method: POST
           headers: '{"Content-type": "application/json"}'
-          body: '{"data":{"pr_url": {{ prUrl }}}}'
+          body: '{"data":{"pr_url": "{{ prUrl }}","title":"{{ pr.title }}"}}'
       - action: add-comment@v1
         args:
           comment: "gitStream automatically created a Jira task for this PR"
