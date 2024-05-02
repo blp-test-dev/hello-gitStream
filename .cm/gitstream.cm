@@ -35,7 +35,7 @@ jiraField: "cf[10036]"
 # You may want to update the text in the comment gitStream posts;
 # otherwise, this section shouldn't need to be changed.
 prUrl: "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
-has_jira_task: {{ prUrl  | hasJiraTask(jiraAuth, jiraField, jiraSpaceName, email) }}
+has_jira_task: {{ "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"  | hasJiraTask(jiraAuth, jiraField, jiraSpaceName, email) }}
 
 automations:
   automatic_jira_task: 
