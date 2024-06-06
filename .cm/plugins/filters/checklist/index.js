@@ -16,7 +16,7 @@ const checklistFilter = async (empty, branch, files, pr, repo, env, source, call
 		{
 			title: "has-jira",
 			label: "The PR has a Jira reference in the title",
-			condition: /\b[A-Za-z]+-\d+\b/.test(pr.title)
+			condition: /\b[A-Za-z]+-\d+\b/(pr.title)
 		},
 		{
 			title: "updates-tests",
