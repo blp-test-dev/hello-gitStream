@@ -1,5 +1,6 @@
 
 
+
 /**
  * Represents a Book with a title and an author
  */
@@ -11,7 +12,7 @@ class Book {
      * @param {string} title - The title of the book
      * @param {string} author - The author of the book
      */
-    constructor(title: string, author: string) {
+    constructor(title: string, authors: string) {
         this.title = title;
         this.author = author;
     }
